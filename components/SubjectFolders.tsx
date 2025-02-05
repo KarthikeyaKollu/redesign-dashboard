@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Folder from "@/public/folder.svg";
 import Image from "next/image";
 import FileSystem from "./FileSystem";
-import expand from '@/public/subjectexpand.svg'
-import close from '@/public/subjectclose.svg'
+import expand from "@/public/subjectexpand.svg";
+import close from "@/public/subjectclose.svg";
 
 const SubjectFolders = () => {
   const [currentPath, setCurrentPath] = useState("");
@@ -15,15 +15,25 @@ const SubjectFolders = () => {
   };
 
   return (
-    <div className="rounded-lg w-[1095px] h-[274px] relative">
+    <div className="rounded-lg w-full h-[274px] relative">
       <h2 className="text-2xl font-semibold text-green-700 ml-2 mb-4 flex justify-between items-center">
         Subjects
         <button onClick={toggleExpand} className="focus:outline-none">
-          <Image src={isExpanded ? close : expand} alt="expand-toggle" width={30} height={30} />
+          <Image
+            src={isExpanded ? close : expand}
+            alt="expand-toggle"
+            width={30}
+            height={30}
+          />
         </button>
       </h2>
-      <div className="flex gap-4 bg-[#F6F7F9] rounded-xl w-[1095px] h-[231px] flex-col items-center justify-center overflow-auto">
-        <FileSystem currentPath={currentPath} setCurrentPath={setCurrentPath} fileType="root" isSubjectFolderView={true} />
+      <div className="flex gap-4 bg-[#F6F7F9] rounded-xl w-full h-[231px] flex-col items-center justify-center overflow-auto">
+        <FileSystem
+          currentPath={currentPath}
+          setCurrentPath={setCurrentPath}
+          fileType="root"
+          isSubjectFolderView={true}
+        />
       </div>
 
       {isExpanded && (
@@ -32,7 +42,12 @@ const SubjectFolders = () => {
             <button onClick={toggleExpand} className="absolute top-3 right-3">
               <Image src={close} alt="close" width={30} height={30} />
             </button>
-            <FileSystem currentPath={currentPath} setCurrentPath={setCurrentPath} fileType="root" isSubjectFolderView={true} />
+            <FileSystem
+              currentPath={currentPath}
+              setCurrentPath={setCurrentPath}
+              fileType="root"
+              isSubjectFolderView={true}
+            />
           </div>
         </div>
       )}

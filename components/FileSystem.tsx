@@ -12,10 +12,10 @@ import Image from "next/image";
 import PlainNote from "@/public/noteplain.svg";
 import PdfFile from "@/public/pdf-file.svg";
 import { useRouter } from "next/navigation";
-import newfolder from '@/public/newfolder.svg';
-import edit from '@/public/editicon.svg'
-import expand from '@/public/subjectexpand.svg'
-import close from '@/public/subjectclose.svg'
+import newfolder from "@/public/newfolder.svg";
+import edit from "@/public/editicon.svg";
+import expand from "@/public/subjectexpand.svg";
+import close from "@/public/subjectclose.svg";
 
 interface FileSystemItem {
   id: string;
@@ -205,9 +205,13 @@ export default function FileSystem({
   const getFileIcon = (item: FileSystemItem) => {
     if (item.type === "folder") {
       if (item.name === "New Folder") {
-        return <Image src={newfolder} alt="new-folder" className="text-black" />;
+        return (
+          <Image src={newfolder} alt="new-folder" className="text-black" />
+        );
       }
-      return <Image src={Subjects} alt="folder" className="w-[169px] h-[133px]" />;
+      return (
+        <Image src={Subjects} alt="folder" className="w-[169px] h-[133px]" />
+      );
     }
 
     if (item.type === "file") {
@@ -234,7 +238,7 @@ export default function FileSystem({
           >
             <ChevronRight className="rotate-180" />
           </Button>
-          <div className="w-[1024px] flex justify-between">
+          <div className="w-full flex justify-between">
             {currentPath.length > 0 ? currentPath[0] : "Subjects"}
             {!isSubjectFolderView && (
               <Image
@@ -265,14 +269,19 @@ export default function FileSystem({
       </div>
 
       <div
-        className={`p-6 overflow-y-auto  scrollbar-hidden transition-all duration-300 ${
+        className={`p-6 overflow-y-auto scrollbar-hidden transition-all duration-300 mx-auto ${
           isExpanded ? "h-[600px]" : "h-[200px]"
         }`}
-      > {isExpanded}
+        style={{ minWidth: "min-content" }}
+      >
+        {" "}
+        {isExpanded}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {!currentFolder && (
             <div
-              className={`flex flex-col items-center cursor-pointer justify-center relative ${ isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : "" } `}
+              className={`flex flex-col items-center cursor-pointer justify-center relative ${
+                isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : ""
+              } `}
               onClick={handleCreateFolder}
             >
               <Image src={newfolder} alt="new-folder" />
@@ -285,7 +294,9 @@ export default function FileSystem({
           {getCurrentItems().map((item) => (
             <div
               key={item.id}
-              className={`flex flex-col items-center cursor-pointer relative justify-center  ${ isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : "" }`}
+              className={`flex flex-col items-center cursor-pointer relative justify-center  ${
+                isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : ""
+              }`}
               onClick={() => handleItemClick(item)}
             >
               {getFileIcon(item)}
