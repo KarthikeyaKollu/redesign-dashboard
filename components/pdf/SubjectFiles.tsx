@@ -7,8 +7,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getFileSystem } from "@/db/pdf/fileSystem";
 import { json } from "stream/consumers";
-import upoladpdf from '@/public/uploadpdf.svg'
-import subjects from '@/public/subjects.svg'
+import upoladpdf from "@/public/uploadpdf.svg";
+import subjects from "@/public/subjects.svg";
 
 interface FileItem {
   id: string;
@@ -38,20 +38,23 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  const formatFolderStructure = (data: FileItem[], fileType: string): FileItem[] => {
+  const formatFolderStructure = (
+    data: FileItem[],
+    fileType: string
+  ): FileItem[] => {
     const folderMap: FolderStructure = {};
     const rootFolders: FileItem[] = [];
-  
+
     // Create a map of all folders and files
     data.forEach((item) => {
-      folderMap[item.id] = { 
-        ...item, 
-        isOpen: false, 
-        isActive: false, 
-        files: []
+      folderMap[item.id] = {
+        ...item,
+        isOpen: false,
+        isActive: false,
+        files: [],
       };
     });
-  
+
     // Organize items by parentId and filter files by fileType
     data.forEach((item) => {
       if (item.parentId) {
@@ -64,16 +67,16 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
         rootFolders.push(folderMap[item.id]);
       }
     });
-  
+
     return rootFolders;
   };
-  
+
   const fetchFolders = async () => {
     try {
       const data = await getFileSystem();
       const formattedFolders = formatFolderStructure(data, fileType); // Pass fileType to the formatting function
       setFolders(formattedFolders);
-      
+
       // Set initial selected folder and its files
       if (formattedFolders.length > 0) {
         const initialFolder = formattedFolders[0];
@@ -81,16 +84,15 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
         setFiles(initialFolder.files);
       }
     } catch (error) {
-      console.error('Error fetching folders:', error);
+      console.error("Error fetching folders:", error);
     } finally {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchFolders();
   }, [fileType]);
-  
 
   const handleFolderSelect = (folder: FileItem) => {
     setSelectedFolder(folder.name);
@@ -104,7 +106,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
   };
 
   return (
-    <div className="w-[529px] h-[431px] mx-auto">
+    <div className="w-full h-[431px]">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl  font-semibold text-green-700">Subject</h2>
         <div className="flex gap-12">
@@ -117,8 +119,14 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
               className="px-4 py-2 bg-white border border-gray-200 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition-colors"
             >
               <Image src={subjects} className="h-4 w-4" alt={""} />
-              <span className="text-sm">{selectedFolder || "Select Folder"}</span>
-              {isDropdownOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              <span className="text-sm">
+                {selectedFolder || "Select Folder"}
+              </span>
+              {isDropdownOpen ? (
+                <ChevronUp size={16} />
+              ) : (
+                <ChevronDown size={16} />
+              )}
             </button>
             {isDropdownOpen && (
               <div className="absolute right-0 mt-1 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
@@ -141,14 +149,13 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6 bg-[#F6F7F9] p-6 rounded-lg w-[529px] h-[430px] overflow-y-auto">
+      <div className="grid grid-cols-3 gap-6 bg-[#F6F7F9] p-6 rounded-lg w-full h-[430px] overflow-y-auto">
         {files.map((file) => (
           <div
             key={file.id}
             className="cursor-pointer hover:scale-105 transition-transform"
             onClick={() => handleFileClick(file.id || "")}
           >
-
             <Image
               src={file.fileType === "pdf" ? PdfFile : FileNote}
               alt={file.fileType === "pdf" ? "PDF" : "Note"}

@@ -5,7 +5,7 @@ import { Upload } from "lucide-react";
 import { addPdf, getAllPdfs } from "@/db/pdf/docs";
 import FileSystem from "@/components/FileSystem";
 import { v4 as uuidv4 } from "uuid";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const FileList = ({ files }) => {
   return (
@@ -129,15 +129,14 @@ const FileUpload = () => {
     await uploadFile(file);
   };
 
-
   const uploadFile = async (file) => {
     const reader = new FileReader();
-  
+
     reader.onload = async (event) => {
       try {
         // Convert file to base64
         const base64 = event.target.result;
-  
+
         // Store file in IndexedDB
         await addPdf({
           documentId: file.id,
@@ -147,7 +146,7 @@ const FileUpload = () => {
           base64, // Save the base64-encoded content
           status: "complete",
         });
-  
+
         // Upload file to the external backend
         // const response = await fetch("http://localhost:5000/upload", {
         //   method: "POST",
@@ -161,16 +160,16 @@ const FileUpload = () => {
         //     base64, // Send the base64-encoded content
         //   }),
         // });
-  
+
         // if (!response.ok) {
         //   throw new Error("Failed to upload file to backend");
         // }
-  
+
         // const result = await response.json();
         // console.log("File uploaded successfully:", result);
 
-        router.push(`/pdfnote/${file.id}`)
-  
+        router.push(`/pdfnote/${file.id}`);
+
         // Update state to reflect completion
         setUploadingFiles((prev) => prev.filter((f) => f.id !== file.id));
         setFiles((prev) => [
@@ -190,18 +189,16 @@ const FileUpload = () => {
         );
       }
     };
-  
+
     reader.onerror = () => {
       console.error("Error reading file:", reader.error);
       setUploadingFiles((prev) =>
         prev.map((f) => (f.id === file.id ? { ...f, status: "error" } : f))
       );
     };
-  
+
     reader.readAsDataURL(file.file);
   };
-  
-  
 
   // const uploadFile = async (file) => {
   //   const reader = new FileReader();
@@ -275,7 +272,7 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="w-[1095px] h-[456px] font-rubik">
+    <div className="w-full h-[456px] font-rubik">
       <div className="flex gap-2 bg-[#F6F7F9] w-fit p-2 rounded-full mb-6">
         <button
           onClick={() => setActiveTab("upload")}
@@ -299,7 +296,7 @@ const FileUpload = () => {
         </button>
       </div>
 
-      <div className="w-[1095px] h-[398px] bg-[#F6F7F9] rounded-xl flex flex-col items-center justify-center">
+      <div className="w-full h-[398px] bg-[#F6F7F9] rounded-xl flex flex-col items-center justify-center">
         {activeTab === "upload" && (
           <div className="">
             <input
@@ -331,7 +328,8 @@ const FileUpload = () => {
                   isDragging ? "text-emerald-500" : "text-gray-400"
                 }`}
               >
-                Click to browse or<br/> drag and drop your files
+                Click to browse or
+                <br /> drag and drop your files
               </p>
             </label>
 
@@ -401,7 +399,7 @@ const FileUpload = () => {
           className="fixed top-0 left-0 w-full h-full bg-[#464444a0]  backdrop-blur-sm flex justify-center items-center"
           style={{ zIndex: 100 }}
         >
-          <div className="max-w-[1095px] max-h-[917px] w-full mb-[15vw] rounded-xl overflow-auto">
+          <div className="max-w-full max-h-[917px] w-full mb-[15vw] rounded-xl overflow-auto">
             <FileSystem
               currentPath={currentPath}
               setCurrentPath={setCurrentPath}

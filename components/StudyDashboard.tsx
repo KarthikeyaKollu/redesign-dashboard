@@ -178,7 +178,7 @@ export const DocumentList = () => {
 
   return (
     <div className="bg-gray-50 rounded-2xl w-full min-w-[529px] h-[419px] ">
-      <div className="p-6 max-w-[529px] mx-auto">
+      <div className="p-6">
         <div className="divide-y divide-gray-200">
           {documents.map((doc, index) => (
             <DocumentRow key={index} {...doc} />
