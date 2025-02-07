@@ -5,6 +5,7 @@ import SubjectsFiles from "@/components/notes/SubjectFiles";
 import React from "react";
 import { SidebarNav } from "@/components/sidebar-nav";
 import TodoList from "@/components/Todo";
+import { DashHeader } from "@/components/DashHeader";
 
 const page = () => {
   return (
@@ -17,6 +18,7 @@ const page = () => {
 
       <SidebarNav/>
       <TodoList/>
+      <DashHeader/>
     </div>
   );
 };
