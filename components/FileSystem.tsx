@@ -13,6 +13,7 @@ import PlainNote from "@/public/noteplain.svg";
 import PdfFile from "@/public/pdf-file.svg";
 import { useRouter } from "next/navigation";
 import newfolder from "@/public/newfolder.svg";
+import newfolder1 from "@/public/newfolder1.svg";
 import edit from "@/public/editicon.svg";
 import expand from "@/public/subjectexpand.svg";
 import close from "@/public/subjectclose.svg";
@@ -203,27 +204,31 @@ export default function FileSystem({
   }, [file, currentFolder, fileType, fileSystem, updateFileSystem, saveFile]);
 
   const getFileIcon = (item: FileSystemItem) => {
-    if (item.type === "folder") {
-      if (item.name === "New Folder") {
-        return (
-          <Image src={newfolder} alt="new-folder" className="text-black" />
-        );
-      }
-      return (
-        <Image src={Subjects} alt="folder" className="w-[169px] h-[133px]" />
-      );
-    }
-
-    if (item.type === "file") {
-      if (item.fileType === "note") {
-        return <Image src={PlainNote} alt="plainNote" />;
-      } else if (item.fileType === "pdf") {
-        return <Image src={PdfFile} alt="pdfFile" />;
-      }
-    }
-
-    // Default case (if no matching type is found)
-    return null;
+    return (
+      <div className="border-2 border-[#369BD5] bg-[#E2F6FF] rounded-lg overflow-hidden p-6">
+        {item.type === "folder" ? (
+          item.name === "New Folder" ? (
+            <Image
+              src={newfolder}
+              alt="new-folder"
+              className="w-[136px] h-[100px]"
+            />
+          ) : (
+            <Image
+              src={newfolder}
+              alt="folder"
+              className="w-[136px] h-[100px]"
+            />
+          )
+        ) : item.type === "file" ? (
+          item.fileType === "note" ? (
+            <Image src={PlainNote} alt="plainNote" />
+          ) : item.fileType === "pdf" ? (
+            <Image src={PdfFile} alt="pdfFile" />
+          ) : null
+        ) : null}
+      </div>
+    );
   };
 
   return (
@@ -279,12 +284,16 @@ export default function FileSystem({
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {!currentFolder && (
             <div
-              className={`flex flex-col items-center cursor-pointer justify-center relative ${
+              className={`flex flex-col items-center cursor-pointer justify-center relative border-2 border-[#8D8D8D] bg-[#F7F7F7] rounded-lg overflow-hidden p-6 ${
                 isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : ""
               } `}
               onClick={handleCreateFolder}
             >
-              <Image src={newfolder} alt="new-folder" />
+              <Image
+                src={newfolder1}
+                alt="new-folder"
+                className="w-[136px] h-[100px]"
+              />
               <div className="mt-1 text-md text-center absolute group top-1/2">
                 <span>New</span>
               </div>
