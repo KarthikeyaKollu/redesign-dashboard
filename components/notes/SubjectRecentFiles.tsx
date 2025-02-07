@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import { getAllNoteIds } from "@/db/note/canvas";
-import FileSystem from '@/components/FileSystem';
+import FileSystem from "@/components/FileSystem";
 
 const SubjectFolders = () => {
   const router = useRouter();
@@ -15,33 +15,28 @@ const SubjectFolders = () => {
   const [currentPath, setCurrentPath] = useState("");
   const [documentId, setDocumentId] = useState<string>("");
   const [fileName, setFileName] = useState<string>("");
-  const [file, setfile] = useState()
+  const [file, setfile] = useState();
   const [files, setFiles] = useState([]);
 
   const openNotes = (id) => {
     router.push(`/note/${id}`);
   };
 
-
-
-
   const createNote = async () => {
-        const documentId = uuidv4(); // Generate a unique document ID
-        setDocumentId(documentId)
-        setIsOverlayOpen(false)
+    const documentId = uuidv4(); // Generate a unique document ID
+    setDocumentId(documentId);
+    setIsOverlayOpen(false);
 
-        try {
-            router.push(`/note/${documentId}`);
-        } catch (error) {
-            console.error('Error saving PDF:', error);
-            alert('Failed to save the PDF. Please try again.');
-        }
-    };
-
-
+    try {
+      router.push(`/note/${documentId}`);
+    } catch (error) {
+      console.error("Error saving PDF:", error);
+      alert("Failed to save the PDF. Please try again.");
+    }
+  };
 
   const fetchFilesFromIndexedDB = async () => {
-    const ids = await getAllNoteIds()
+    const ids = await getAllNoteIds();
     setFiles(ids);
   };
 
@@ -50,17 +45,19 @@ const SubjectFolders = () => {
   }, []);
 
   const createNotes = () => {
-    const id = uuidv4()
-    setIsOverlayOpen(true)
-    setFileName(id)
-    setDocumentId(id)
+    const id = uuidv4();
+    setIsOverlayOpen(true);
+    setFileName(id);
+    setDocumentId(id);
     // router.push(`/note/${uuidv4()}`);
   };
 
   return (
-    <div className="rounded-lg w-[1095px] h-[274px]">
-      <h2 className="text-2xl font-semibold text-green-700 mb-4">Recent Notes</h2>
-      <div className="flex gap-4 bg-[#F6F7F9] rounded-xl w-[1095px] h-[231px] items-center justify-start">
+    <div className="rounded-lg w-full h-[274px]">
+      <h2 className="text-2xl font-semibold text-green-700 mb-4">
+        Recent Notes
+      </h2>
+      <div className="flex gap-4 bg-[#F6F7F9] rounded-xl w-full h-[231px] items-center justify-start px-10">
         <div
           className="relative group flex flex-col items-center  cursor-pointer"
           onClick={createNotes}
