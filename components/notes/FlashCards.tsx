@@ -1,12 +1,14 @@
-import React from 'react';
-import { Search, Plus, MoreHorizontal } from 'lucide-react';
+import React from "react";
+import { Search, Plus, MoreHorizontal } from "lucide-react";
 
 const FlashCards = () => {
   return (
     <div className="w-[537px] h-[498px] font-rubik">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl  font-semibold text-green-700">My Flash Cards</h1>
+        <h1 className="text-2xl  font-semibold text-green-700">
+          My Flash Cards
+        </h1>
         <div className="flex items-center gap-2">
           <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
             <Search size={20} />
@@ -53,7 +55,8 @@ const FlashCards = () => {
                 </div>
                 <h2 className="font-semibold text-gray-900">Research</h2>
                 <p className="text-sm text-gray-500">
-                  User research helps you to create an optimal product for users.
+                  User research helps you to create an optimal product for
+                  users.
                 </p>
               </div>
               <button className="p-1 text-gray-400 hover:text-gray-600">

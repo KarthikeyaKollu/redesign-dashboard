@@ -11,14 +11,14 @@ const page = () => {
   return (
     <div className="mt-32 font-rubik">
       <SubjectFolders />
-      <div className="flex  gap-8 mt-20 mb-20  ">
+      <div className="flex  gap-8 mt-20 mb-20">
         <FlashCards />
         <SubjectsFiles fileType="note" />
       </div>
 
-      <SidebarNav/>
-      <TodoList/>
-      <DashHeader/>
+      <SidebarNav />
+      <TodoList />
+      <DashHeader />
     </div>
   );
 };
