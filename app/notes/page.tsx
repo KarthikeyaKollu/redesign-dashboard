@@ -9,16 +9,23 @@ import { DashHeader } from "@/components/DashHeader";
 
 const page = () => {
   return (
-    <div className="mt-32 font-rubik">
-      <SubjectFolders />
-      <div className="flex  gap-8 mt-20 mb-20">
-        <FlashCards />
-        <SubjectsFiles fileType="note" />
-      </div>
-
-      <SidebarNav />
-      <TodoList />
+    <div className="font-rubik pt-[100px]">
       <DashHeader />
+      <div className="flex gap-8 mt-8">
+        <div className="hidden lg:block">
+          <SidebarNav />
+        </div>
+        <div className="flex-1 flex flex-col gap-8">
+          <SubjectFolders />
+          <div className="flex gap-8">
+            <FlashCards />
+            <SubjectsFiles fileType="note" />
+          </div>
+        </div>
+        <div className="hidden xl:block">
+          <TodoList />
+        </div>
+      </div>
     </div>
   );
 };
