@@ -85,7 +85,7 @@ const TodoItem = ({ todo, index, deleteTodo, editTodo }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.2 }}
-      className="bg-white rounded-2xl p-4 pl-5 mb-3 shadow-sm w-[235px] h-[150px] relative"
+      className="bg-white rounded-2xl p-4 pl-5 mb-3 shadow-sm w-full h-[150px] relative"
     >
       <div className="flex justify-between items-start mb-2">
         <span
@@ -137,7 +137,12 @@ const TodoItem = ({ todo, index, deleteTodo, editTodo }) => {
           {[...Array(todo.collaborators)].map((_, i) => (
             <img
               key={i}
-              className="w-4 h-4 rounded-full bg-gray-200 border-2 border-white" src={"https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80"} alt={""}            />
+              className="w-4 h-4 rounded-full bg-gray-200 border-2 border-white"
+              src={
+                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80"
+              }
+              alt={""}
+            />
           ))}
         </div>
         <div className="flex items-center gap-3 text-gray-500 text-[10px]">
@@ -378,9 +383,9 @@ const TodoList = () => {
   const filterOptions = ["All", "High", "Low"];
 
   return (
-    <div className="flex flex-col gap-10 w-[285px]">
+    <div className="flex flex-col gap-10 w-full">
       <div className="flex justify-end pr-5">
-      <div className="flex w-[150px] h-[24px]">
+        <div className="flex w-[150px] h-[24px]">
           <FilterDropdown
             filterOpen={filterOpen}
             setFilterOpen={setFilterOpen}
@@ -388,69 +393,67 @@ const TodoList = () => {
             setActiveFilter={setActiveFilter}
             filterOptions={filterOptions}
           />
+        </div>
       </div>
-      </div>
-    
-    <div className="w-[285px] h-[550px]">
 
-      <div className="max-w-full mx-auto">
-        <div className="bg-[#f6f7f9] rounded-xl p-4 w-[270px] h-[600px]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
-              <span className="font-semibold text-gray-800">To Do</span>
-              <span className="bg-[#D8C7E7] text-[#553C9A] px-1.5 py-0.5 rounded-full text-xs w-[20px] h-[20px]">
-                {filteredTodos.length}
-              </span>
-              
+      <div className="w-full h-[550px]">
+        <div className="max-w-full mx-auto">
+          <div className="bg-[#f6f7f9] rounded-xl p-4 w-full h-[600px] mt-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
+                <span className="font-semibold text-gray-800">To Do</span>
+                <span className="bg-[#D8C7E7] text-[#553C9A] px-1.5 py-0.5 rounded-full text-xs w-[20px] h-[20px]">
+                  {filteredTodos.length}
+                </span>
+              </div>
+              <motion.button
+                onClick={() => setIsCreating(true)}
+                className="w-6 h-6 flex items-center justify-center text-[#5030E5] hover:bg-[#E4EBFA]"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <PlusIcon className="w-[18px] h-[18px] bg-[#b0a8c5] p-0.5 rounded-md " />
+              </motion.button>
             </div>
-            <motion.button
-              onClick={() => setIsCreating(true)}
-              className="w-6 h-6 flex items-center justify-center text-[#5030E5] hover:bg-[#E4EBFA]"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <PlusIcon className="w-[18px] h-[18px] bg-[#b0a8c5] p-0.5 rounded-md " />
-            </motion.button>
+
+            <span className="mb-6 flex p-[0.5px] w-full bg-[#553C9A]"></span>
+
+            <AnimatePresence mode="popLayout">
+              {!isCreating &&
+                filteredTodos.map((todo, index) => (
+                  <TodoItem
+                    key={index}
+                    todo={todo}
+                    index={index}
+                    deleteTodo={deleteTodo}
+                    editTodo={editTodo}
+                  />
+                ))}
+
+              {isCreating && (
+                <CreateTodoForm
+                  priority={priority}
+                  setPriority={setPriority}
+                  newTodo={newTodo}
+                  setNewTodo={setNewTodo}
+                  addTodo={isEditing ? updateTodo : addTodo}
+                  setIsCreating={setIsCreating}
+                />
+              )}
+            </AnimatePresence>
           </div>
 
-          <span className="mb-6 flex p-[0.5px] w-full bg-[#553C9A]"></span>
-
-          <AnimatePresence mode="popLayout">
-            {!isCreating &&
-              filteredTodos.map((todo, index) => (
-                <TodoItem
-                  key={index}
-                  todo={todo}
-                  index={index}
-                  deleteTodo={deleteTodo}
-                  editTodo={editTodo}
-                />
-              ))}
-
-            {isCreating && (
-              <CreateTodoForm
-                priority={priority}
-                setPriority={setPriority}
-                newTodo={newTodo}
-                setNewTodo={setNewTodo}
-                addTodo={isEditing ? updateTodo : addTodo}
-                setIsCreating={setIsCreating}
-              />
-            )}
-          </AnimatePresence>
-        </div>
-
-        <div className="w-[270px] h-[60px] bg-[#f6f7f9] rounded-2xl mt-10 flex items-center justify-center">
-          <div className="w-[268px] h-[43px] flex items-center justify-around">
-            <Image src={logo} alt="s" className="w-[40px] h-[28px]" />
-            <p className=" text-[#553c9a] text-md font-semibold">
-              Acolyte Chat Bot
-            </p>
+          <div className="w-full h-[60px] bg-[#f6f7f9] rounded-2xl mt-10 flex items-center justify-center">
+            <div className="w-full h-[43px] flex items-center justify-around">
+              <Image src={logo} alt="s" className="w-[40px] h-[28px]" />
+              <p className=" text-[#553c9a] text-md font-semibold">
+                Acolyte Chat Bot
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

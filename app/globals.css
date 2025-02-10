@@ -7,6 +7,18 @@
   --foreground: #ffffff;
 }
 
+/* Utility classes */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+ 
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+ 
+ 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
