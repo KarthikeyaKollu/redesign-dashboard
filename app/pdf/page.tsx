@@ -7,8 +7,8 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="mt-32 font-rubik">
-      <div className="mb-20 mt-44">
+    <div className=" min-h-screen w-full mt-[20%] font-rubik">
+      <div className="mb-20 mt-[18rem]">
         <FileUpload />
       </div>
       <div className="flex gap-8 mb-20">

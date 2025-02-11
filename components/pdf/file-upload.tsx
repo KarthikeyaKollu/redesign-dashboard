@@ -298,7 +298,7 @@ const FileUpload = () => {
 
       <div className="w-full h-[398px] bg-[#F6F7F9] rounded-xl flex flex-col items-center justify-center">
         {activeTab === "upload" && (
-          <div className="">
+          <div className="w-full px-10">
             <input
               type="file"
               id="fileInput"
@@ -312,7 +312,7 @@ const FileUpload = () => {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`border-2 border-dashed w-[1004px] h-[246px] rounded-2xl p-16 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+              className={`border-2 border-dashed w-full h-[246px] rounded-2xl p-16 flex flex-col items-center justify-center cursor-pointer transition-colors ${
                 isDragging
                   ? "border-emerald-500 bg-emerald-50"
                   : "border-gray-300 bg-gray-50 hover:bg-gray-100"

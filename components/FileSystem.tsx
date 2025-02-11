@@ -255,7 +255,7 @@ export default function FileSystem({
             )}
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center" style={{ zIndex: 100 }}>
           {/* {!currentFolder && (
             <Button variant="ghost" size="icon" onClick={handleCreateFolder}>
               <Folder className="h-4 w-4" />
@@ -267,7 +267,7 @@ export default function FileSystem({
               size="icon"
               onClick={handleAddFileToCurrentFolder}
             >
-              <Check className="h-4 w-4" />
+              <Check className="h-4 w-4 text-black" />
             </Button>
           )}
         </div>
