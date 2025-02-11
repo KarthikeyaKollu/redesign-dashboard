@@ -6,7 +6,7 @@ import React from "react";
 import { PanelLeft, PanelRight } from "lucide-react";
 import { DashHeader } from "@/components/DashHeader";
 import { SidebarNav } from "@/components/sidebar-nav";
-import { SettingsProvider } from "@/context/SettingsContext";
+// import { SettingsProvider } from "@/context/SettingsContext";
 import TodoList from "@/components/Todo";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -34,7 +34,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="w-screen h-screen overflow-hidden flex flex-col">
-          {/* <SettingsProvider> */}
           <DashHeader />
           {/* Sidebar Toggle (Left) */}
           <Sheet>
@@ -72,23 +71,27 @@ export default function RootLayout({
             </SheetContent>
           </Sheet>
 
-          <div className="grid grid-cols-12 gap-4 min-h-screen overflow-hidden">
-            {/* Sidebar (Visible on Large Screens, Hidden on <1024px) */}
-            <div className="hidden lg:flex lg:flex-col lg:overflow-auto col-span-2 text-white p-4 mt-[70px]">
+          <div className="grid grid-cols-12 gap-4 min-h-screen h-screen overflow-hidden ">
+            {/* Sidebar - Visible on md+, Hidden on sm and smaller */}
+            <aside className="hidden md:block md:col-span-2 lg:col-span-2 xl:col-span-2  text-white  bg-white border-r-2 pt-[8rem]">
               <SidebarNav />
-            </div>
+            </aside>
+
             {/* Main Content - Expands when Todo is Hidden */}
-            <main className="col-span-12 lg:col-span-10 2xl:col-span-7 p-4 overflow-auto scrollbar-hide h-full flex w-full items-center justify-center">
+            <main className="col-span-12 md:col-span-9 lg:col-span-10 xl:col-span-10  flex  justify-center  overflow-auto h-screen scrollbar-hidden pt-[9rem] p-6">
               {children}
             </main>
-            {/* Todo List (Hidden on <1920px, Else Takes 3 Columns) */}
-            <div className="hidden 2xl:flex 2xl:col-span-3">
+
+            {/* Todo List - Visible on xl+ (≥1280px), Hidden on lg (1024px - 1279px) */}
+            <aside className="hidden xl:flex xl:col-span-2 bg-gray-100 p-4">
               <TodoList />
-            </div>
+            </aside>
           </div>
-          {/* </SettingsProvider> */}
         </div>
       </body>
     </html>
   );
 }
+
+// big -> 2,10,2
+//md -> 4,12

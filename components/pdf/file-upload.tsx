@@ -272,7 +272,7 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="w-full h-[456px] font-rubik">
+    <div className="w-full  font-rubik">
       <div className="flex gap-2 bg-[#F6F7F9] w-fit p-2 rounded-full mb-6">
         <button
           onClick={() => setActiveTab("upload")}
@@ -296,7 +296,7 @@ const FileUpload = () => {
         </button>
       </div>
 
-      <div className="w-full h-[398px] bg-[#F6F7F9] rounded-xl flex flex-col items-center justify-center">
+      <div className="w-full  bg-[#F6F7F9] rounded-xl flex flex-col items-center justify-center p-4 py-6">
         {activeTab === "upload" && (
           <div className="w-full px-10">
             <input
@@ -324,7 +324,7 @@ const FileUpload = () => {
                 }`}
               />
               <p
-                className={`text-lg text-center font-bold ${
+                className={`text-sm text-center font-bold lg:text-md xl:text-lg  ${
                   isDragging ? "text-emerald-500" : "text-gray-400"
                 }`}
               >

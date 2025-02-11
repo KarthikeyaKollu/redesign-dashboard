@@ -108,7 +108,9 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
   return (
     <div className="w-full h-[431px]">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl  font-semibold text-green-700">Subject</h2>
+        <h2 className="text-md md:text-lg lg:text-xl  font-semibold text-green-700">
+          Subject
+        </h2>
         <div className="flex gap-12">
           <Button className="px-4 py-2 bg-[#38A169] text-white rounded-full text-sm font-medium hover:bg-green-600 transition-colors">
             New Upload
@@ -119,7 +121,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
               className="px-4 py-2 bg-white border border-gray-200 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition-colors"
             >
               <Image src={subjects} className="h-4 w-4" alt={""} />
-              <span className="text-sm">
+              <span className="text-sm text-[#575757]">
                 {selectedFolder || "Select Folder"}
               </span>
               {isDropdownOpen ? (
@@ -136,7 +138,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
                   folders.map((folder) => (
                     <button
                       key={folder.id}
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
+                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 text-[#575757] transition-colors"
                       onClick={() => handleFolderSelect(folder)}
                     >
                       {folder.name}
@@ -149,7 +151,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6 bg-[#F6F7F9] p-6 rounded-lg w-full h-[430px] overflow-y-auto">
+      <div className="grid grid-cols-3 gap-8 bg-[#F6F7F9] p-6 rounded-lg w-full h-[430px] overflow-y-auto">
         {files.map((file) => (
           <div
             key={file.id}
@@ -162,7 +164,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
               className="w-[102px] h-[128px]"
             />
             <div className="pb-4 pt-2">
-              <p className="text-xs font-medium text-gray-900 truncate">
+              <p className="block text-center text-xs lg:text-sm xl:text-md overflow-hidden line-clamp-2 text-[#575757]">
                 {file.name || "Untitled"}
               </p>
               <p className="text-xs text-gray-500">{file.uploadTime} </p>

@@ -205,7 +205,7 @@ export default function FileSystem({
 
   const getFileIcon = (item: FileSystemItem) => {
     return (
-      <div className="border-2 border-[#369BD5] bg-[#E2F6FF] rounded-lg overflow-hidden p-6">
+      <div className="border border-[#369BD5] bg-[#E2F6FF] rounded-lg shadow-lg overflow-hidden  p-4 py-2">
         {item.type === "folder" ? (
           item.name === "New Folder" ? (
             <Image
@@ -232,7 +232,7 @@ export default function FileSystem({
   };
 
   return (
-    <div className="w-full h-full bg-[#EEF1F5] rounded-lg flex flex-col">
+    <div className="w-full h-full bg-[#EEF1F5] text-black rounded-lg flex flex-col">
       <div className=" p-2 flex items-center justify-between">
         <div className="flex items-center">
           <Button
@@ -277,15 +277,14 @@ export default function FileSystem({
         className={`p-6 overflow-y-auto scrollbar-hidden transition-all duration-300 mx-auto ${
           isExpanded ? "h-[600px]" : "h-[200px]"
         }`}
-        style={{ minWidth: "min-content" }}
+        // style={{ minWidth: "min-content" }}
       >
         {" "}
-        {isExpanded}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {!currentFolder && (
             <div
-              className={`flex flex-col items-center cursor-pointer justify-center relative border-2 border-[#8D8D8D] bg-[#F7F7F7] rounded-lg overflow-hidden p-6 ${
-                isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : ""
+              className={`flex flex-col items-center cursor-pointer justify-center relative border border-[#8D8D8D] bg-[#F7F7F7] rounded-lg  p-4 py-2 ${
+                isExpanded ? "border-slate-300 border rounded-lg p-2" : ""
               } `}
               onClick={handleCreateFolder}
             >
@@ -294,8 +293,10 @@ export default function FileSystem({
                 alt="new-folder"
                 className="w-[136px] h-[100px]"
               />
-              <div className="mt-1 text-md text-center absolute group top-1/2">
-                <span>New</span>
+              <div className="mt-1 text-md text-center absolute group -bottom-8">
+                <p className="block text-center text-xs lg:text-sm xl:text-md overflow-hidden line-clamp-2 text-[#575757]">
+                  New Folder
+                </p>
               </div>
             </div>
           )}
@@ -304,7 +305,7 @@ export default function FileSystem({
             <div
               key={item.id}
               className={`flex flex-col items-center cursor-pointer relative justify-center  ${
-                isExpanded ? "border-slate-300 border-2 rounded-lg p-2" : ""
+                isExpanded ? "border-slate-300 border rounded-lg p-2" : ""
               }`}
               onClick={() => handleItemClick(item)}
             >
@@ -320,17 +321,22 @@ export default function FileSystem({
                     }
                   }}
                   autoFocus
-                  className="text-sm text-center editing-input absolute top-1/2"
+                  className="text-sm text-center editing-input absolute -bottom-8 right-0 bg-transparent"
                   data-id={item.id}
                   onClick={(e) => e.stopPropagation()}
                 />
               ) : (
                 <div className="text-md text-center group mt-1">
-                  <div className="w-full absolute top-1/2 right-0">
-                    <p className="truncate text-center overflow-hidden whitespace-nowrap text-ellipsis">
+                  <div
+                    className={`w-full absolute  right-0 ${
+                      item.name.length > 11 ? "-bottom-12" : "-bottom-8"
+                    }`}
+                  >
+                    <p className="block text-center text-xs lg:text-sm xl:text-md overflow-hidden line-clamp-2 text-[#575757]">
                       {item.name}
                     </p>
                   </div>
+
                   <Button
                     variant="ghost"
                     size="icon"

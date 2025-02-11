@@ -181,7 +181,7 @@ export function SidebarNav() {
 
   const baseLinkStyles =
     "w-full h-[39px] flex items-center gap-3 px-3 py-2 text-lg font-rubik rounded-lg";
-  const activeLinkStyles = "bg-purple-50 text-purple-600";
+  const activeLinkStyles = "bg-purple-50 text-purple-600 font-semibold";
   const inactiveLinkStyles = "text-gray-600 hover:bg-gray-50";
 
   const renderDropdownItems = (type) => {
@@ -252,7 +252,7 @@ export function SidebarNav() {
   }
 
   return (
-    <div className="w-[275px] h-[1113px]   mt-3  bg-white">
+    <div className="w-full h-full">
       {isOpen && (
         <FileUploadWrapper
           isUploadPdf={isOpen}
@@ -279,7 +279,7 @@ export function SidebarNav() {
                 }`}
               >
                 <Image src={item.Icon} className="w-5 h-5" alt={""} />
-                {item.label}
+                <span className="lg:text-sm xl:text-md text-xs">{item.label}</span>
               </Link>
               <AnimatePresence>
                 {item.hasDropdown &&

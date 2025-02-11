@@ -9,14 +9,15 @@ import { DashHeader } from "@/components/DashHeader";
 
 const page = () => {
   return (
-    <div className="font-rubik pt-[100px] min-h-screen w-full flex flex-col">
+    <div className="font-rubik w-full flex flex-col">
       <div className="flex-1 flex flex-col gap-8 w-full">
-        <SubjectFolders className="w-full" />
+        <SubjectFolders  />
         <div className="flex gap-8 w-full">
-          <FlashCards className="w-full lg:w-1/2" />
-          <SubjectsFiles fileType="note" className="w-full lg:w-1/2" />
+          <FlashCards />
+          <SubjectsFiles fileType="note"  />
         </div>
       </div>
+    
     </div>
   );
 };

@@ -119,7 +119,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
               className="px-4 py-2 bg-white border border-gray-200 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition-colors"
             >
               <Image src={subjects} className="h-4 w-4" alt={""} />
-              <span className="text-sm">
+              <span className="text-sm text-[#575757]">
                 {selectedFolder || "Select Folder"}
               </span>
               {isDropdownOpen ? (
@@ -139,7 +139,10 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
                       className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
                       onClick={() => handleFolderSelect(folder)}
                     >
-                      {folder.name}
+                      {/* {folder.name} */}
+                      <p className="block text-center text-xs lg:text-sm xl:text-md overflow-hidden line-clamp-2 text-[#575757]">
+                        {folder.name}
+                      </p>
                     </button>
                   ))
                 )}
@@ -162,7 +165,7 @@ const SubjectsFiles: React.FC<SubjectsFilesProps> = ({ fileType }) => {
               className="w-[102px] h-[128px]"
             />
             <div className="pb-4 pt-2">
-              <p className="text-xs font-medium text-gray-900 truncate">
+              <p className="block text-center text-xs lg:text-sm xl:text-md overflow-hidden line-clamp-2 text-[#575757]">
                 {file.name || "Untitled"}
               </p>
               <p className="text-xs text-gray-500">{file.uploadTime} </p>

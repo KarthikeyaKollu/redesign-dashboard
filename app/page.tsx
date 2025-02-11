@@ -5,10 +5,10 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="font-rubik pt-[600px] min-h-screen w-full flex flex-col gap-8">
-      <TrackerDashboard className="w-full" />
-      <StudyDashboard className="w-full" />
-      <SubjectFolders className="w-full" />
+    <div className="font-rubik   w-full flex flex-col space-y-12">
+      <TrackerDashboard />
+      <SubjectFolders />
+      <StudyDashboard />
     </div>
   );
 };

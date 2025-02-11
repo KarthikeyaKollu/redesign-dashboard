@@ -66,13 +66,13 @@ const SubjectFolders = () => {
           <div className="relative  rounded-lg  p-4 pt-8 flex flex-col items-center">
             <Image alt="folder" src={Filecreate} />
             <div
-              className={`mt-2 text-center text-sm font-medium  rounded px-2 py-0.5`}
+              className={`mt-2 text-center text-sm font-medium  rounded px-2 py-0.5 text-[#575757]`}
             >
               Create New
             </div>
           </div>
         </div>
-        {files.map((id, index) => (
+        {[0, 2].map((id, index) => (
           <div
             key={index}
             className="relative group flex flex-col items-center cursor-pointer"
@@ -81,11 +81,9 @@ const SubjectFolders = () => {
             {/* Folder content */}
             <div className="relative  rounded-lg  p-4 pt-8 flex flex-col items-center">
               <Image alt="folder" src={File} />
-              <div
-                className={`mt-2 text-center text-sm font-medium  rounded px-2 py-0.5 truncate overflow-hidden w-24`}
-              >
+              <p className="block text-center text-xs pt-2 lg:text-sm xl:text-md overflow-hidden line-clamp-2 text-[#575757]">
                 {id}
-              </div>
+              </p>
             </div>
           </div>
         ))}

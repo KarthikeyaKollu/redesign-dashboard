@@ -3,19 +3,19 @@ import { FileText } from "lucide-react";
 
 const StudyDashboard = () => {
   return (
-    <div className="flex gap-8">
+    <div className="flex flex-col lg:flex-row gap-8 w-full">
       {/* Collaborative Study Section */}
-      <div className="w-full min-w-[529px] h-[476px]">
+      <div className="w-full h-auto lg:h-[476px]">
         <h2 className="text-2xl font-semibold text-emerald-700 mb-6">
-          Collaborative study
+          Collaborative Study
         </h2>
         <DocumentList />
       </div>
-
       <ContinueReading />
     </div>
   );
 };
+
 
 const ProgressBar = ({ color, progress }) => (
   <div className="w-48 h-2 bg-gray-100 rounded-full">
@@ -30,7 +30,7 @@ export const ContinueReading = () => {
   return (
     <>
       {/* Continue Reading Section */}
-      <div className="w-full min-w-[529px] h-[476px]">
+      <div className="w-full  h-[476px]">
         <h2 className="text-2xl font-semibold text-emerald-700 mb-6">
           Continue reading
         </h2>
@@ -49,21 +49,21 @@ const ProgressList = () => {
   ];
 
   return (
-    <div className="bg-gray-50 rounded-2xl w-full min-w-[529px] h-[419px]">
+    <div className="bg-gray-50 rounded-2xl w-full  h-[419px]">
       <div className="p-6">
         <div className="space-y-6 py-7">
           {units.map((unit, index) => (
             <div key={unit.id}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-indigo-900 font-semibold">
+                  <span className="text-indigo-900 font-semibold lg:text-sm xl:text-md text-xs">
                     Unit {unit.id}-
                   </span>
                   <span className="text-gray-500">Medical Apparatus</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <ProgressBar color={unit.color} progress={unit.progress} />
-                  <span className="text-gray-700 font-medium w-12">
+                  <span className="text-gray-700 font-medium w-12 lg:text-sm xl:text-md text-xs">
                     {unit.progress}%
                   </span>
                 </div>
@@ -131,7 +131,7 @@ const DocumentRow = ({ number, more }) => {
         <FileText className="w-5 h-5 text-indigo-600" />
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-indigo-600 font-medium text-xl">
+            <span className="text-indigo-600 font-semibold lg:text-sm xl:text-md text-xs">
               Guyton and hall
             </span>
             <span className="text-gray-500 text-sm">- physiology</span>
@@ -177,7 +177,7 @@ export const DocumentList = () => {
   ];
 
   return (
-    <div className="bg-gray-50 rounded-2xl w-full min-w-[529px] h-[419px] ">
+    <div className="bg-gray-50 rounded-2xl w-full  h-[419px] ">
       <div className="p-6">
         <div className="divide-y divide-gray-200">
           {documents.map((doc, index) => (

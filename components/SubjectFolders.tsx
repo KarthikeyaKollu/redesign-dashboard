@@ -27,7 +27,7 @@ const SubjectFolders = () => {
           />
         </button>
       </h2>
-      <div className="flex gap-4 bg-[#F6F7F9] rounded-xl w-full h-[231px] flex-col items-center justify-center overflow-auto">
+      <div className="">
         <FileSystem
           currentPath={currentPath}
           setCurrentPath={setCurrentPath}
@@ -37,8 +37,8 @@ const SubjectFolders = () => {
       </div>
 
       {isExpanded && (
-        <div className="fixed -top-5 left-0 w-full h-full max-h-[927px] bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-white rounded-xl w-[80%] h-[80%] relative">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
+          <div className="bg-white rounded-xl w-[90vw] h-[80vh] max-w-4xl max-h-[90vh] relative flex flex-col">
             <button onClick={toggleExpand} className="absolute top-3 right-3">
               <Image src={close} alt="close" width={30} height={30} />
             </button>
@@ -47,6 +47,7 @@ const SubjectFolders = () => {
               setCurrentPath={setCurrentPath}
               fileType="root"
               isSubjectFolderView={true}
+              className="flex-grow"
             />
           </div>
         </div>

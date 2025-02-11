@@ -123,7 +123,7 @@ const FolderTree = () => {
         <FileUploadWrapper isUploadPdf={isOpen} setIsOpen={setIsOpen} fileType={fileType} />
       )}
       <div className="flex items-center justify-between px-3">
-        <span className="text-xs font-semibold font-rubik text-gray-500">
+        <span className="text-xs font-semibold font-rubik text-gray-500 lg:text-sm xl:text-md">
           SUBJECTS
         </span>
         <DropdownMenu>
@@ -176,7 +176,7 @@ const FolderTree = () => {
                       }`}
                     />
                     <span
-                      className={`text-base ${
+                      className={`lg:text-sm xl:text-md text-xs ${
                         folder.isActive
                           ? "text-purple-600 font-semibold"
                           : "text-gray-500"

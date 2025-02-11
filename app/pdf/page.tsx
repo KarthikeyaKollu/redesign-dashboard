@@ -7,11 +7,11 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className=" min-h-screen w-full mt-[20%] font-rubik">
-      <div className="mb-20 mt-[18rem]">
+    <div className="w-full  font-rubik">
+      <div className="mb-20">
         <FileUpload />
       </div>
-      <div className="flex gap-8 mb-20">
+      <div className="flex flex-col md:flex-row gap-8 ">
         <SubjectsFiles fileType="pdf" />
         <ContinueReading />
       </div>
